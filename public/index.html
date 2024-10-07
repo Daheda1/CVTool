@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Upload Hjemmeside</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>Automatisk CV upload</h1>
+            <form id="cv-form">
+                <div class="form-group">
+                    <label for="fullname">Navn og efternavn</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Fødselsdato</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefon Nr.</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <!-- Adresse felter -->
+                <div class="form-group">
+                    <label for="address">Adresse</label>
+                    <input type="text" id="address" name="address" placeholder="Gadenavn og nummer" required>
+                </div>
+                <div class="address-row">
+                    <div class="form-group">
+                        <label for="zipcode">Postnummer</label>
+                        <input type="text" id="zipcode" name="zipcode" pattern="\d{4}" placeholder="4 cifre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">By</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                </div>
+                
+                <!-- Tidligere Jobs Sektion -->
+                <div class="section">
+                    <h2>Tidligere Jobs</h2>
+                    <table class="dynamic-table" id="jobs-table">
+                        <thead>
+                            <tr>
+                                <th>Fra</th>
+                                <th>Til</th>
+                                <th>Arbejdsplads</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="date" name="jobs[from][]" required></td>
+                                <td><input type="date" name="jobs[to][]" ></td>
+                                <td><input type="text" name="jobs[place][]" required></td>
+                                <td><button type="button" class="remove-row">Fjern</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="add-row" data-table="jobs-table">Tilføj ny linje</button>
+                </div>
+                
+                <!-- Uddannelse Sektion -->
+                <div class="section">
+                    <h2>Uddannelse</h2>
+                    <table class="dynamic-table" id="education-table">
+                        <thead>
+                            <tr>
+                                <th>Fra</th>
+                                <th>Til</th>
+                                <th>Uddannelsessted</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="date" name="education[from][]" required></td>
+                                <td><input type="date" name="education[to][]" required></td>
+                                <td><input type="text" name="education[place][]" required></td>
+                                <td><button type="button" class="remove-row">Fjern</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="add-row" data-table="education-table">Tilføj ny linje</button>
+                </div>
+                
+                <!-- Færdigheder Sektion -->
+                <div class="section">
+                    <h2>Færdigheder</h2>
+                    <div class="dynamic-list" id="skills-list">
+                        <div class="list-item">
+                            <input type="text" name="skills[]" placeholder="Skriv en færdighed" >
+                            <button type="button" class="remove-item">Fjern</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-item" data-list="skills-list">Tilføj ny færdighed</button>
+                </div>
+                
+                <!-- Egenskaber Sektion -->
+                <div class="section">
+                    <h2>Egenskaber</h2>
+                    <div class="dynamic-list" id="attributes-list">
+                        <div class="list-item">
+                            <input type="text" name="attributes[]" placeholder="Skriv en egenskab" >
+                            <button type="button" class="remove-item">Fjern</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-item" data-list="attributes-list">Tilføj ny egenskab</button>
+                </div>
+                
+                <button type="submit">Indsend</button>
+            </form>
+        </div>
+        <div class="pdf-viewer" id="pdf-viewer">
+            <div class="drop-zone" id="drop-zone">
+                <p>Træk og slip dit CV her</p>
+            </div>
+            <iframe id="pdf-frame" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
